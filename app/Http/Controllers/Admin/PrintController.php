@@ -44,4 +44,13 @@ class PrintController extends Controller
             'item' => $item
         ]);
     }
+
+    public function appraisal()
+    {
+        $item = Letter::with(['department'])->where('letter_type', 'Surat Permohonan Apparaisal')->latest()->get();
+
+        return view('pages.admin.letter.print-appraisal',[
+            'item' => $item
+        ]);
+    }
 }

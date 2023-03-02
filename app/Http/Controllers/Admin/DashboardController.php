@@ -15,13 +15,15 @@ class DashboardController extends Controller
         $keluar = Letter::where('letter_type', 'Surat Penyerahan Recovery')->get()->count();
         $anu = Letter::where('letter_type', 'Surat Pelunasan')->get()->count();
         $apa = Letter::where('letter_type', 'Surat Penyerahan AFO')->get()->count();
+        $appraisal = Letter::where('letter_type', 'Surat Permohonan Appraisal')->get()->count();
         
 
         return view('pages.admin.dashboard',[
             'masuk' => $masuk,
             'keluar' => $keluar,
             'anu' => $anu,
-            'apa' => $apa
+            'apa' => $apa,
+            'appraisal' => $appraisal
         ]);
     }
 }

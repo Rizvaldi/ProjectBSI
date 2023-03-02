@@ -42,6 +42,7 @@ Route::prefix('admin')
             Route::get('letter/surat-penyerahan-recovery', [LetterController::class, 'outgoing_mail'])->name('surat-penyerahan-recovery');
             Route::get('letter/surat-pelunasan', [LetterController::class, 'anu_mail'])->name('surat-pelunasan');
             Route::get('letter/surat-penyerahan-afo', [LetterController::class, 'apa_mail'])->name('surat-penyerahan-afo');
+            Route::get('letter/surat-permohonan-appraisal', [LetterController::class, 'appraisal_mail'])->name('surat-permohonan-appraisal');
 
 
             Route::get('letter/surat/{id}', [LetterController::class, 'show'])->name('detail-surat');
@@ -52,6 +53,7 @@ Route::prefix('admin')
             Route::get('print/surat-penyerahan-recovery', [PrintController::class, 'outgoing'])->name('print-surat-penyerahan-recovery');
             Route::get('print/surat-pelunasan', [PrintController::class, 'anu'])->name('print-surat-pelunasan');
             Route::get('print/surat-penyerahan-afo', [PrintController::class, 'apa'])->name('print-surat-penyerahan-afo');
+            Route::get('print/surat-permohonan-appraisal', [PrintController::class, 'appraisal'])->name('print-surat-permohonan-appraisal');
 
 
             Route::resource('user', UserController::class);

@@ -117,6 +117,24 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                <div class="col-lg-12 col-xl-6 mb-4">
+                    <div class="card bg-primary text-white h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="me-3">
+                                    <div class="text-white-75 small">Surat Permohonan Appraisal</div>
+                                    <div class="text-lg fw-bold">{{ $appraisal }}</div>
+                                </div>
+                                <i class="feather-xl text-white-50" data-feather="mail"></i>
+                            </div>
+                        </div>
+                        <div class="card-footer d-flex align-items-center justify-content-between small">
+                            <a class="text-white stretched-link" href="{{ route('surat-permohonan-appraisal') }}">Selengkapnya</a>
+                            <div class="text-white"><i class="fas fa-angle-right"></i></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>

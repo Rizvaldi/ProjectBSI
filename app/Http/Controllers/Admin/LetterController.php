@@ -56,9 +56,11 @@ class LetterController extends Controller
             $redirect = 'surat-penyerahan-recovery';
         } elseif ($validatedData['letter_type'] == 'Surat Pelunasan') {
             $redirect = 'surat-pelunasan';
-        } else {
+        } elseif ($validatedData['letter_type'] == 'Surat Penyerahan AFO') {
             $redirect = 'surat-penyerahan-afo';
-        } 
+        } else {
+            $redirect = 'surat-permohonan-appraisal';
+        }
 
 
 
@@ -205,6 +207,40 @@ class LetterController extends Controller
         return view('pages.admin.letter.apa');
     }
 
+    public function appraisal_mail()
+    {
+        if (request()->ajax()) {
+            $query = Letter::with(['department'])->where('letter_type', 'Surat Permohonan Appraisal')->latest()->get();
+
+            return Datatables::of($query)
+                ->addColumn('action', function ($item) {
+                    return '
+                        <a class="btn btn-success btn-xs" href="' . route('detail-surat', $item->id) . '">
+                            <i class="fa fa-search-plus"></i> &nbsp; Detail
+                        </a>
+                        <a class="btn btn-primary btn-xs" href="' . route('letter.edit', $item->id) . '">
+                            <i class="fas fa-edit"></i> &nbsp; Ubah
+                        </a>
+                        <form action="' . route('letter.destroy', $item->id) . '" method="POST" onsubmit="return confirm('."'Anda akan menghapus item ini dari situs anda?'".')">
+                            ' . method_field('delete') . csrf_field() . '
+                            <button class="btn btn-danger btn-xs">
+                                <i class="far fa-trash-alt"></i> &nbsp; Hapus
+                            </button>
+                        </form>
+                    ';
+                })
+                ->editColumn('post_status', function ($item) {
+                   return $item->post_status == 'Published' ? '<div class="badge bg-green-soft text-green">'.$item->post_status.'</div>':'<div class="badge bg-gray-200 text-dark">'.$item->post_status.'</div>';
+                })
+                ->addIndexColumn()
+                ->removeColumn('id')
+                ->rawColumns(['action','post_status'])
+                ->make();
+        }
+
+        return view('pages.admin.letter.appraisal');
+    }
+
     public function show($id)
     {
         $item = Letter::with(['department'])->findOrFail($id);
@@ -260,8 +296,10 @@ class LetterController extends Controller
             $redirect = 'surat-penyerahan-recovery';
         } elseif ($validatedData['letter_type'] == 'Surat Pelunasan') {
             $redirect = 'surat-pelunasan';
-        } else {
+        } elseif ($validatedData['letter_type'] == 'Surat Penyerahan AFO') {
             $redirect = 'surat-penyerahan-afo';
+        } else {
+            $redirect = 'surat-permohonan-appraisal';
         }
 
         $item->update($validatedData);
@@ -281,8 +319,10 @@ class LetterController extends Controller
             $redirect = 'surat-penyerahan-recovery';
         } elseif ($item->letter_type == 'Surat Pelunasan') {
             $redirect = 'surat-pelunasan';
-        } else {
+        } elseif ($item-> letter_type == 'Surat Penyerahan AFO') {
             $redirect = 'surat-penyerahan-afo';
+        } else {
+            $redirect = 'surat-permohonan-appraisal';
         }
 
 

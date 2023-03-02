@@ -50,6 +50,10 @@
                 <div class="nav-link-icon"><i data-feather="arrow-left"></i></div>
                 Surat Penyerahan AFO
             </a>
+            <a class="nav-link {{ (request()->is('admin/letter/surat-permohonan-appraisal')) ? 'active' : '' }}" href="{{ route('surat-permohonan-appraisal') }}">
+                <div class="nav-link-icon"><i data-feather="arrow-left"></i></div>
+                Surat Permohonan Appraisal
+            </a>
             <a class="nav-link {{ (request()->is('admin/user*')) ? 'active' : '' }}" href="{{ route('user.index') }}">
                 <div class="nav-link-icon"><i data-feather="user"></i></div>
                 Data User

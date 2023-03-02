@@ -55,6 +55,7 @@
                                             <option value="Surat Penyerahan Recovery" {{ (old('letter_type') == 'Surat Penyerahan Recovery')? 'selected':'' }}>Surat Penyerahan Recovery</option>
                                             <option value="Surat Pelunasan" {{ (old('letter_type') == 'Surat Pelunasan')? 'selected':'' }}>Surat Pelunasan</option>
                                             <option value="Surat Penyerahan AFO" {{ (old('letter_type') == 'Surat Penyerahan AFO')? 'selected':'' }}>Surat Penyerahan AFO</option>
+                                            <option value="Surat Permohonan Appraisal" {{ (old('letter_type') == 'Surat Permohonan Appraisal')? 'selected':'' }}>Surat Permohonan Appraisal</option>
                                         </select>
                                     </div>
                                     @error('letter_type')
